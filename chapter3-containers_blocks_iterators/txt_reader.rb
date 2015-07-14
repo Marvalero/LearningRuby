@@ -22,8 +22,9 @@ class TxtReader
   end
 
   def get_line
-    lambda do 
+    lambda do
       if !( @returned =~ /end/)
+        # We read a line
         @returned = @enum_file.next
         if @returned =~ /end/
           Logger.info("Closing the file")
@@ -36,6 +37,7 @@ class TxtReader
 
   def get_json
     if !(@returned =~ /end/)
+      # We read the file
       @returned = @enum_file.to_a.inject("") {|data,line| "#{data}#{line.split(" ").to_s}"}
     end
     @returned
