@@ -1,13 +1,13 @@
 #!/usr/bin/ruby
 
 require_relative 'txt_reader'
-require 'test/unit'
+require 'minitest/autorun'
 
-class TestInfo < Test::Unit::TestCase
+class TestInfo < Minitest::Test
   def test_reader
     reader = TxtReader.new("data.txt")
     full_file = reader.get_line
-    assert_equal(["Juan Lopez 16 178"],full_file.call)
+    assert_equal("Juan Lopez 16 178\n",full_file.call)
   end
 end
 
