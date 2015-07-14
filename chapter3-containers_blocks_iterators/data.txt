@@ -1,0 +1,7 @@
+Juan Lopez 16 178
+Carlos Lila 23 169
+Rosa Loquesea 45 156
+Carmen Garcia 34 166
+Alejandro Tapia 30 188
+Roberto Jajaja 24 175
+end
