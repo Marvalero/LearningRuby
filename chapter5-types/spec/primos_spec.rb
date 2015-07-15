@@ -2,6 +2,10 @@
 
 require "primos"
 
+RSpec.configure do |c|
+  c.color = true
+end
+
 describe Primos do
   describe ".new" do
 
@@ -55,6 +59,15 @@ describe Primos do
       end
       it "Not equals" do
         expect(Primos.new(8)==Primos.new(10)).not_to eql(true)
+      end
+    end
+  end
+
+  describe "Range" do
+    context "Number between range" do
+      it "Prime number" do
+        require 'pry'; binding.pry
+        expect((Primos.new(2)..Primos.new(50))===Primos.new(11)).to eql(true)
       end
     end
   end
