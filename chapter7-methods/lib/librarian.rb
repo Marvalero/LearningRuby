@@ -10,7 +10,7 @@ class Librarian
     end
   end
 
-  def sayHi(arg1=["Maria"],*other,options)
+  def sayHi(arg1="Maria",*other,options)
     # Must we say good_nigth?
     if options.has_key?(:good_nigth)
       print options[:good_nigth] + " #{arg1} "
