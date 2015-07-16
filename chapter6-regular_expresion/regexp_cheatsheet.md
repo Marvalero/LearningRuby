@@ -1,7 +1,7 @@
 
 # Regular Expressions
 
-# Pattern Modifiers
+### Pattern Modifiers
  - g Global match
  - i Caseinsensitive
  - m Multiple lines
@@ -10,7 +10,7 @@
  - e Evaluate replacement
  - U Ungreedy pattern
 
-# Anchors
+### Anchors
  - ^  Start of string, or start of line in multi-line pattern
  - \A Start of string
  - $  End of string, or end of line in multi-line pattern
@@ -20,7 +20,7 @@
  - \< Start of word
  - \> End of word
 
-# Quantifiers
+### Quantifiers
  - *     0 or more
  - +     1 or more
  - ?     0 or 1
@@ -29,7 +29,7 @@
  - {3,5} 3, 4 or 5
 **Add a ? to a quantifier to make it ungreedy.
 
-# Groups and Ranges
+### Groups and Ranges
  - .       Any character except new line (\n)
  - (a|b)   a or b
  - (...)   Group
@@ -41,7 +41,7 @@
  - [0-7]   Digit from 0 to 7
  - \x      Group/­sub­pattern number "­x"
 
-# Character Classes
+### Character Classes
  - \c Control character
  - \s White space
  - \S Not white space
@@ -52,7 +52,7 @@
  - \x Hexadecimal digit
  - \O Octal digit
 
-# POSIX
+### POSIX
  - [:upper:]  Upper case letters
  - [:lower:]  Lower case letters
  - [:alpha:]  All letters
@@ -67,7 +67,7 @@
  - [:print:]  Printed characters and spaces
  - [:word:]   Digits, letters and underscore
 
-# String Replacement
+### String Replacement
  - $n nth non-passive group
  - $2 "­xyz­" in /^(abc­(xy­z))$/
  - $1 "­xyz­" in /^(?:a­bc)­(xyz)$/
@@ -77,7 +77,7 @@
  - $& Entire matched string
 ** Some regex implem­ent­ations use \ instead of $.
 
-# Assertions
+### Assertions
  - ?=         Lookahead assertion
  - ?!         Negative lookahead
  - ?<=        Lookbehind assertion
@@ -87,12 +87,12 @@
  - ?()|       Condition [if then else]
  - ?#         Comment
 
-# Escape Sequences
+### Escape Sequences
  - \  Escape following character
  - \Q Begin literal sequence
  - \E End literal sequence
 
-# Special Characters
+### Special Characters
  - \n   New line
  - \r   Carriage return
  - \t   Tab
