@@ -1,12 +1,18 @@
 #!/usr/bin/ruby
 
 class Librarian
+  attr_reader :books
 
+  def initialize
+    @books=[]
+  end
   def orderBooks(*arg,&block)
+    %x{date}.match(/.* (.*):(.*):(.*) .*/)
+    arg.each {|book| @books<<{ name: book, date: [$1,$2,$3]} }
     if block_given?
-      block.call arg
+      block.call @books.map {|book| book[:name]}
     else
-      arg.sort
+      @books.map {|book| book[:name]}.sort
     end
   end
 
@@ -21,6 +27,16 @@ class Librarian
     # Are there other people?
     line = line + " and friends" if other.length>0
     line
+  end
+
+  def search_book(client,name: /.*/, author:, **date)
+    libros = @books.select {|book| book[:name]=~ name}
+    puts date.inspect
+    if date == {}
+      libros
+    else
+      libros.select {|book| book[:date][0].to_i==date[:hour]}
+    end
   end
 end
 
