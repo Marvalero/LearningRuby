@@ -11,14 +11,16 @@ class Librarian
   end
 
   def sayHi(arg1="Maria",*other,options)
+    line = ""
     # Must we say good_nigth?
     if options.has_key?(:good_nigth)
-      print options[:good_nigth] + " #{arg1} "
+      line = line + options[:good_nigth] + " #{arg1}"
     else
-      print "Hi #{arg1} "
+      line = line + "Hi #{arg1}"
     end
     # Are there other people?
-    puts "and friends" if other.length>0
+    line = line + " and friends" if other.length>0
+    line
   end
 end
 

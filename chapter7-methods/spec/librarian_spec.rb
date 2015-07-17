@@ -25,7 +25,7 @@ describe Librarian do
         expect(Librarian.new.sayHi({})).to eql("Hi Maria")
       end
       it "Nothing to say" do
-        expect(Librarian.new.sayHi("Pepe","Juan",{})).to eql("Hi Pepe and friends\n")
+        expect(Librarian.new.sayHi("Pepe","Juan",{})).to eql("Hi Pepe and friends")
       end
     end
     context "Say Bye" do
