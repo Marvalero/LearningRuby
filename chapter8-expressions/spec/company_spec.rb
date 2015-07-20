@@ -44,4 +44,16 @@ describe Company do
     end
   end
 
+  describe ".define_work" do
+    context "Adding some projects" do
+      it "Add project Microservice" do
+        expect(subject.define_work("Project Microservice")).to match("Microservice")
+      end
+    end
+    context "Adding invalid task" do
+      it "Invalid task" do
+        expect(subject.define_work("Invalid task")).to eql("Invalid task")
+      end
+    end
+  end
 end

@@ -1,7 +1,7 @@
 #!/usr/bin/ruby
 
 class Company
-  attr_reader :workers
+  attr_reader :workers, :task
   def initialize(*workers)
     @workers = workers if workers != []
     # We set a default value
@@ -15,5 +15,16 @@ class Company
   end
   def workers_last_char_vocal
     @workers.grep(/[aeiou]$/)
+  end
+  def define_work(task)
+    case task
+    when Regexp.new("project\s(.*)","i")
+      if !(defined? @tasks)
+        @task = []
+      end
+      @task[task.length]=$1
+    else
+      "Invalid task"
+    end
   end
 end
