@@ -24,7 +24,7 @@ describe Calculator do
         expect(subject.calculate("/",3,2)).to eql(1.5)
       end
       it "operation invalid" do
-        expect{subject.calculate("&",3,2)}.to raise_error
+        expect{subject.calculate("&",3,2)}.to raise_error(OperationException)
       end
     end
   end

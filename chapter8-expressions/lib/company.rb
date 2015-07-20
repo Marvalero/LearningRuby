@@ -19,10 +19,11 @@ class Company
   def define_work(task)
     case task
     when Regexp.new("project\s(.*)","i")
-      if !(defined? @tasks)
+      if  !(defined? @task)
         @task = []
       end
-      @task[task.length]=$1
+      @task<<$1
+      @task
     else
       "Invalid task"
     end
