@@ -1,0 +1,4 @@
+
+Example of execution:
+ $ ruby -I lib/ bin/webmanager http://www.google.com/search?q=doughnuts http://www.google.com/search?q=horses
+

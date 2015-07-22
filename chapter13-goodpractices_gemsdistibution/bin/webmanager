@@ -1,0 +1,7 @@
+#!/usr/local/ruby
+
+require 'webmanager/runner'
+
+runner = Webmanager::Runner.new(ARGV)
+runner.run
+
