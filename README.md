@@ -31,8 +31,20 @@ file=File.new(“name”,”r”); file.close , File.opens(“name”,”r”)-d
 
 
 ### Chapter 11
-fibers let you suspend the execution of one part of the program(obj.resume: execute the block, Fiber.yield: stop the execution of the block, libraries: fiber and continuation), threads for decoupled execution, or use multiple processes,     
+- fibers let you suspend the execution of one part of the program(Fiber.new {}: create a fiber, obj.resume: execute the block, Fiber.yield: stop the execution of the block, libraries: fiber and continuation), 
 
+- Threads for decoupled execution (Thread.new(var) { | local_var |}: create a thread, it’s better use print ”\n” instead of puts, thread_obj.join wait a thread until it end up, thread_obj.value return the last statement of the thread, thread_obj.status, thread_obj.alive?, thread_obj.priority=, Thread.current to access at the executing thread and you could use Thread.current[:var] to share variables between threads_obj, Thread.list, Thread.abort_on_exception=true/false, Thread.stop, thread_obj.run, Thread.pass, threads_objs.each{&:join})
+     - Mutex (Mutex.new, mutex_obj.lock, mutex_obj.unlock, mutex_obj.syncronize {}, mutex_obj.trylock doesn’t stop a thread, mutex.sleep(time) to unlock the mutex for some time)   
+
+     - queue: library secure to use in threads. It automatically implements mutex. 
+- Processes (system(“ls”) execute a command in a subprocess, obj=IO.popen()-obj.puts-obj.close_write,obj.gets execute a command as a subprocess and you could write and read from it, IO.popen(“-“,”w+") make a fork, Process.wait wait a child, trap() {} create an interruption when child end, fork { # Executed by child}, IO.popen(“comand”) {| result | #Executed process finish})  
+
+     - $? contains information about a subprocess
+     - $$ pid of a proccess
+
+12: obj.freeze to freeze a variable, benchmark module, execution of code (-w to show warnings, -r profile to show), debug (gem pry, -r debug)  
+
+otro: (a..z).count() {}
 
 
 ### Searching a method
