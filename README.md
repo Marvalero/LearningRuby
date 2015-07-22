@@ -49,6 +49,22 @@ file=File.new(“name”,”r”); file.close , File.opens(“name”,”r”)-d
   - debug: gem pry, -r debug (c: execute all, s: step to the next line, n: skip over a line, b line: create a breakpoint on line)  
 
   - Rake to define tasks you may want to repeat 
+  - Command-line arguments ( ruby <options> <-> <programfile> <arguments> ). Arguments ( ARGV: array con los parametros, ARGF: accede a ficheros pasados como parametro (ARGF.filename, ARGF.gets, ARGF.file, ARGF.lineno,ARGF.inplace_mode=ext)).Options:
+    - 0 : octal
+    - a : auto split mode 
+    - c : cheks syntax
+    - d : debug
+    - E encoding : encoding
+    - e ‘command’ : execute a command in ruby
+    - F pattern : specifies the input separator used as the default split (affects the -a option)
+    - W level: set level of warning issues
+    - y : enables yacc debugging
+    - i .back program.rb file1 file2: creates a backup files if som input file are modificated
+  - exit: end up the application, at_exit: allow to execute code at exit, 
+  - environment variables: it’s like a hash, ejm: ENV[’SHELL’]. The changes are just visible in the process (if a child changes a environment variable, the father won’t know nothing)
+  - find libraries: the variable $: keeps the sites where ruby search for a variable. Add a library (RUBYLIB, $: << File.dirname(__FILE__))
+  - Gems: (gem server to see web documentation)
+
 
 otro: (a..z).count() {}
 
