@@ -47,7 +47,8 @@ file=File.new(“name”,”r”); file.close , File.opens(“name”,”r”)-d
   - execution of code (-w to show warnings)
   - Efficiency: benchmark module ( bm(6) { |x|  x.report("test") {100_000.times { #code } } ),  -r profile to show 
   - debug: gem pry, -r debug (c: execute all, s: step to the next line, n: skip over a line, b line: create a breakpoint on line)  
- 
+
+  - Rake to define tasks you may want to repeat 
 
 otro: (a..z).count() {}
 

@@ -22,9 +22,9 @@ task :update_git do
   print "Enter the commit name and press enter: "
   line = STDIN.gets.chomp
 
+  sh %{git pull}
   sh %{git add --all }
   sh %{git commit -m \"#{line}\"}
-  sh %{git pull}
   sh %{git push}
 end
 
