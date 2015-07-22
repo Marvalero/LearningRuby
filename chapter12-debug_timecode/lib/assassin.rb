@@ -1,11 +1,24 @@
 #!/usr/bin/ruby
 
-class Dead
-  def initialize
-    at_exit {puts "Killing you"}
+module Dead
+  # Defining a module
+  module Knife
+    def afilado?
+      true
+    end
   end
-  def kill
-    exit
+
+  # Definning a method
+  def starting(name="")
+    at_exit {puts "Killing you #{name}"}
+  end
+
+  # Defining a class
+  class Assassin
+    include Knife
+    def kill
+      exit
+    end
   end
 end
 
