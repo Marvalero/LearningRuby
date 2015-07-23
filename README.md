@@ -63,7 +63,32 @@ file=File.new(“name”,”r”); file.close , File.opens(“name”,”r”)-d
   - exit: end up the application, at_exit: allow to execute code at exit, 
   - environment variables: it’s like a hash, ejm: ENV[’SHELL’]. The changes are just visible in the process (if a child changes a environment variable, the father won’t know nothing)
   - find libraries: the variable $: keeps the sites where ruby search for a variable. Add a library (RUBYLIB, $: << File.dirname(__FILE__))
-  - Gems: (gem server to see web documentation)
+  - Gems: (gem server to see web documentation) 
+          - "gem list name_gem -d" to see information about a gem
+          - “gem search -r name_gem” to search a gem
+          - “gem install name_gem” to install a gem
+          - Gemfile: 
+               - source: where it’ll search gems
+               - gem ‘mygem’, git:  “https://…"
+               - gem ‘mygem’, path: “/path_to_gem/"
+
+### Chapter 13 
+ - Namespaces: we use double colon (::) to resolve a namespace. Use: class/module::constant  (class and modules are themselves constants)
+ - Organizing your source:  (executed with: ruby -I lib bin/program args)
+     - bin/       -->  command-line interface
+          - program
+     - lib/        -->  library files
+          - program/
+               - lib1.rb
+               - lib2.rb
+               - runner.rb  —> module with a class to execute
+     - test/      -->  test files
+ - Distributing and instaling code:
+     - good practices: add a README, LICENSE, INSTALL and doc/
+     - create a “packaging/program/program.gemspec” with specifications. then run “gem build program.gemspec” and it will create a program-0.0.1.gem file
+     - install a gem: sudo gem install pkg/program-0.0.1.gem
+     - push gem to public repository: gem push program-0.0.1.gem 
+
 
 
 otro: (a..z).count() {}
