@@ -64,13 +64,13 @@ file=File.new(“name”,”r”); file.close , File.opens(“name”,”r”)-d
   - environment variables: it’s like a hash, ejm: ENV[’SHELL’]. The changes are just visible in the process (if a child changes a environment variable, the father won’t know nothing)
   - find libraries: the variable $: keeps the sites where ruby search for a variable. Add a library (RUBYLIB, $: << File.dirname(__FILE__))
   - Gems: (gem server to see web documentation) 
-          - "gem list name_gem -d" to see information about a gem
-          - “gem search -r name_gem” to search a gem
-          - “gem install name_gem” to install a gem
-          - Gemfile: 
-               - source: where it’ll search gems
-               - gem ‘mygem’, git:  “https://…"
-               - gem ‘mygem’, path: “/path_to_gem/"
+     - "gem list name_gem -d" to see information about a gem
+     - “gem search -r name_gem” to search a gem
+     - “gem install name_gem” to install a gem
+     - Gemfile: 
+          - source: where it’ll search gems
+          - gem ‘mygem’, git:  “https://…"
+          - gem ‘mygem’, path: “/path_to_gem/"
 
 ### Chapter 13 
  - Namespaces: we use double colon (::) to resolve a namespace. Use: class/module::constant  (class and modules are themselves constants)
