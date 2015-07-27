@@ -33,7 +33,10 @@ describe MakeQuack do
       it "quacking three ducks" do
         expect( (Duck.new*3).map(&(MakeQuack.new)) ).to eql(["Quack","Quack","Quack"])
       end
-    end
+      it "quacking duck and record duck" do
+        expect( (Duck.new+(DuckRecord.new)).collect {|x| MakeQuack.new.start(x)} ).to eql(["Quack","Quack"])
+      end
+     end
 
   end
 
