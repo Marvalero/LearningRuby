@@ -126,6 +126,40 @@ file=File.new(“name”,”r”); file.close , File.opens(“name”,”r”)-d
 
 otro: (a..z).count() {}
 
+### Appendix
+
+#### 1: Duck Typing
+In ruby, the class is never (almost never) the type. Instead, the type of an object is defined more by what that object can do. This is so convenient for testing. 
+  - Object.respond_to?(:method)
+  - symbol.to_proc. Ejm: :upcase.to_proc.call("asfd”)
+  - obj.send(:method) calls the method of the object
+  - obj1.coerce(obj2): return an array with both object in a cool way to sum them
+
+#### 2: Metaprogramming:
+  - Object and classes: self (methods are searched in self), obj.class.ancestors to see the superclasses of the obj
+  - Singletons: when we define a obj.method, ruby create an anonymous singleton class. Ruby makes this singleton class the class of the obj and makes his real class the superclass of the singleton class. The same happen with classes, a class as “Object” as superclass and “class” as class, but after create a singleton, his class is the anonymous singleton. 
+	- We can also create singleton classes with notation “class << obj” 
+	- you could also record a class “singleton = class << obj ; self; end”, but we cannot create a new instance of singleton class. 
+	- Define a var: class Test; @var=99; class << self; attr_accessor :var; end; end
+  - Inheritance and visibility: you could change the visibility of a method in the children, but we must take care (because they could execute dangerous methods). 
+  - Modules and mixins: when you include a module, ruby create a new class with module methods. 
+	- prepend: the methods in the prepended module take precedence over those in the host class. 
+	- extend: add the instance methods to a particular object. 
+ 	- refinements: changes with prepend are global (for libraries and gems we use) so we could break a library we rely on. A refinement allow to make “local” changes just for some class and modules. 
+  - Metaprogramming class-level macros: we could define a inner method in a method of a class and use it calling the outer method. We could also use it in a subclass. 
+	- define_method(): to create a method
+	- instance_variable_set(“name”,value)
+	- We should use a module and extend it in our classes
+  - Two other forms of class definition: we could extend a class with an expression or an Struct. We can also create new singleton classes using "someclass= Class.new do [methods] end”  
+  - instance_eval and class_eval. This Object#instalce_eval, Module#class_eval and Module#module_eval, let us set self to an arbitrary object. This is dangerous and slow. class_eval define instance methods and instance_eval define class method. obj.instant_exec for execute code in the class. 
+	- You must be careful with intense_eval and constants
+  - Hook methods: it’s like a callback that ruby calls when some events occur. Hook methods: method_added, coerce, initialise_dup,…
+      - inherited: it will be call if a class inherits from the original. 
+      - method_missing(name_method, *args,&block): it’s called when we call a method that don’t exist in that class.
+      - included/extended/prepended: for a module. it’s executed if the module is included/extended/prepended.
+
+
+
 
 ### Searching a method
 object.methods.inspect.split(", ").grep(/method/)
