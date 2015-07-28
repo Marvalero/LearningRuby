@@ -18,11 +18,14 @@ describe "LocalDevices" do
       it "2 ports" do
         expect(router1.port2= "123:2334:242").to eql("123:2334:242")
       end
+      it "no mac in port1" do
+        expect(router1.port1).to eql(nil)
+      end
     end
 
     context "#see_all_ports" do
       it "showing" do
-        expect(router1.see_all_ports).to eql("")
+        expect(router1.see_all_ports).to eql(["port1","port2"])
       end
     end
   end

@@ -4,6 +4,8 @@ module Port
   module ClassMethods
     def add_port(*num_ports)
       num_ports.each do | num_port |
+        #instance_variable_set("@port#{num_port}",nil)
+
         define_method("port#{num_port}=")  {|x| instance_variable_set("@port#{num_port}",x) }
         define_method("port#{num_port}") { instance_variable_get("@port#{num_port}") }
       end
@@ -12,8 +14,7 @@ module Port
 
   # method that will be included as a instance method
   def see_all_ports
-    puts self
-    self.instance_variables.collect {|var| var.to_s.match(/port/)}
+    self.methods.select {|var| var.to_s.match(/port\d+=/)}.collect { |sym| sym.match(/(port\d+)/) and $1}
   end
 
   # Hook method: is called when a module is included into a class
