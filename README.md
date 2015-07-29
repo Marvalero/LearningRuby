@@ -143,8 +143,8 @@ In ruby, the class is never (almost never) the type. Instead, the type of an obj
 	- Define a var: class Test; @var=99; class << self; attr_accessor :var; end; end
   - Inheritance and visibility: you could change the visibility of a method in the children, but we must take care (because they could execute dangerous methods). 
   - Modules and mixins: when you include a module, ruby create a new class with module methods. 
-	- prepend: the methods in the prepended module take precedence over those in the host class. 
-	- extend: add the instance methods to a particular object. 
+	- prepend: the methods in the prepended module take precedence over those in the host class. If we call ancestors, module will preceded the class (with include, class preced module) 
+	- extend: add a class methods. 
  	- refinements: changes with prepend are global (for libraries and gems we use) so we could break a library we rely on. A refinement allow to make “local” changes just for some class and modules. 
   - Metaprogramming class-level macros: we could define a inner method in a method of a class and use it calling the outer method. We could also use it in a subclass. 
 	- define_method(): to create a method
