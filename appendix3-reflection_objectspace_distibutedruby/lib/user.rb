@@ -12,5 +12,9 @@ class User < Struct.new(:name, :mac)
   def marshal_dump
     [name,mac]
   end
+  def encode_with(properties)
+    properties['name'] = name
+    properties['mac'] = mac
+  end
 end
 
