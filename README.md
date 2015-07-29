@@ -158,6 +158,36 @@ In ruby, the class is never (almost never) the type. Instead, the type of an obj
       - method_missing(name_method, *args,&block): it’s called when we call a method that don’t exist in that class.
       - included/extended/prepended: for a module. it’s executed if the module is included/extended/prepended.
 
+#### 3: Reflection, ObjectSpace, and Distributed Ruby
+  - Looking at objects: 
+      - ObjectSpace.each_object(Type) to see every object defined (don’t work with Fixnum, Symbols, true, false, nil and Float),
+      - obj.methods, obj.respond_to? method, obj.kind_of? class 
+  - Looking at classes: 
+       - class#superclass
+       - module#ancestors, class#ancestors
+       - See methods of a class: private_instance_methods(false), protected_instance_methods(false), public_instance_methods(false), singleton_methods(false), class_variables, constant(false)
+       - See methods of an instance: instance_variables, public_methods
+  - Calling methods dynamically: object.send(:method,args), obj.method(:name).call, 
+       - obj.bind(:method) to add a method
+       - proc = %{obj.method} ;  eval(proc) : execute a method
+       - binding: to get a context.(we could use eval(proc,context))
+          ** remember: eval is so slooow
+  - System hook: we could change include something in a method using def method ; super.tap { |result| #included code} ; end
+  - Tracing your program execution: 
+       - TracePoint class (pag 722) is useful to debug. You can capture b_call, b_return, c_call, c_return, call, end, line, raise, return, thread_begin, thread_end.
+       - caller: return an array of the current stack
+  - Behind the curtains: code = Ruby::InstructionSequence.compile(‘#code’)  ;   code.dissamble
+  - Marshaling: marshalling is to store an object that you can reconstruct after. 
+       - File.open(“name”,”w+”) { |file| Marshall.dump(object,file) } , Marshall.load(File.open(“name”)),
+       - marshall_dump(), marshal_load(): could be redefined in a class to modify the way the class is saved and loaded
+       - YALM: library slower than marshall but allow to save and load object in devices with different interpreters. YALM.dump(), YALM.load(). We could change the way is saved with method encode_with()
+       
+  - Distributed ruby: drb library allow to use marshalling and network to share objects between process. 
+
+#### 4: Locking Ruby in the safe
+
+$SAFE, obj.tained?, obj.untrushted? (it depends of the level of $SAFE) 
+
 
 
 
