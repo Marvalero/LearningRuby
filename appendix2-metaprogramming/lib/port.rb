@@ -4,8 +4,6 @@ module Port
   module ClassMethods
     def add_port(*num_ports)
       num_ports.each do | num_port |
-        #instance_variable_set("@port#{num_port}",nil)
-
         define_method("port#{num_port}=")  {|x| instance_variable_set("@port#{num_port}",x) }
         define_method("port#{num_port}") { instance_variable_get("@port#{num_port}") }
       end

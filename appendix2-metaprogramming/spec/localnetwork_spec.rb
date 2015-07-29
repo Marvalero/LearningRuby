@@ -49,7 +49,7 @@ describe "LocalNetwork" do
     let(:testserver) { Class.new(MainServer) }
     context "Using Refinator" do
       it "#read_key" do
-        expect(testserver.read_key(*("command".chars))).to eql("testing")
+        expect(testserver.new.read_key(*("command".chars))).to eql("testing")
       end
     end
   end

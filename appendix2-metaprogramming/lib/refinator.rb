@@ -7,7 +7,7 @@ module TestNetwork
   include LocalNetwork
   module Refinator
     refine MainServer do
-      def self.read_key(*args)
+      def read_key(*args)
         "testing"
       end
     end
