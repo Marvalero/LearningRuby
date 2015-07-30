@@ -188,7 +188,18 @@ In ruby, the class is never (almost never) the type. Instead, the type of an obj
 
 $SAFE, obj.tained?, obj.untrushted? (it depends of the level of $SAFE) 
 
-
+#### 5: thor
+  - Comands:
+      - thor list: lista las tareas de thor
+      - thor class:task  ->ejecuta una tarea de la clase class que hereda de thor 
+  - Use: define a class < Thor in a  “.thor" file and create methods with “desc 'name task’, ‘descriptive task’ “ before
+  - Tasks can have:
+      - arguments
+      - options
+  - Class group: we need to define it (class Klass < Thor::Group) and register it in other class: register(class_name, subcommand_alias, usage_list_string, description_string)
+  - invoke: allow to invoke other tasks of thor->  invoke :task, [args]
+  - Executable: include the ruby shebang line, require “thor”, define Thor class, MyThorExecutable.start
+  - namespace: to create an “alias” of the namespace
 
 
 ### Searching a method
