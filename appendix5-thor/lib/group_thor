@@ -1,0 +1,3 @@
+#!/usr/bin/env ruby
+require_relative "group_thor"
+MyAwesomeGem::MyCommand.start
