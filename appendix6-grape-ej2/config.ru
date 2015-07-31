@@ -1,13 +1,8 @@
-#require 'sinatra'
 require 'grape'
 
 class API < Grape::API
-  get :hello do
-    { hello: "world" }
-  end
-  post '/statuses' do
-    puts "recibed: #{params[:text]}"
-    "No params"
+  get '/files/:id', rabl:'assets/item' do
+    @assets = Assets[params[:id]]
   end
 end
 
