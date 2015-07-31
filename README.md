@@ -201,6 +201,40 @@ $SAFE, obj.tained?, obj.untrushted? (it depends of the level of $SAFE)
   - Executable: include the ruby shebang line, require “thor”, define Thor class, MyThorExecutable.start
   - namespace: to create an “alias” of the namespace
 
+#### 6: grape
+Executing:
+  - test: 
+       - GET: curl -i -N http://localhost:9292/
+       - POST: curl -d '{"key": "value"}' 'http://localhost:9292/statuses' -H Content-Type:application/json -v
+  - rackup: execute “config.ru”
+  - rspec: get, post, delete, put
+
+Programming:
+  - helpers:  you can use a helper methods (with the macro helper). We could define it in module
+  - params:
+       - requires
+       - optional
+       - group
+       - mutually_exclusive: to ensure that two parameters are not defined at the same time
+       - exactly_one_of
+       - all_or_none_of
+       - given-required
+       - ** Suported types: Integer, string, array,… and any class with “parse” method defined 
+  - desc: to describing methods.
+  - detail: A more enhanced description
+  - params: Define parameters directly from an Entity
+  - success: (former entity) The Entity to be used to present by default this route
+  - failure: (former http_codes) A definition of the used failure HTTP Codes and Entities
+  - named: A helper to give a route a name and find it with this name in the documentation Hash
+  - headers: A definition of the used Header
+  - cookies: You can set, get and delete your cookies very simply using cookies method
+  - resource: define the namespace
+  - version: add in the path
+  - authentication:
+  - redirect: to a new url (you can redirect temporally or permanently)
+  - Exceptions: error! (“Access Denied”, 401), you can present documented errors with Grape entity using the grape-entity gem
+  - ** Exception handling: rescue_from ArgumentError, RuntimeError {|e| error!(“Error: #{e}")}
+
 
 ### Searching a method
 object.methods.inspect.split(", ").grep(/method/)
