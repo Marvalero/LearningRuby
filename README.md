@@ -235,6 +235,26 @@ Programming:
   - Exceptions: error! (“Access Denied”, 401), you can present documented errors with Grape entity using the grape-entity gem
   - ** Exception handling: rescue_from ArgumentError, RuntimeError {|e| error!(“Error: #{e}")}
 
+#### 7: rack
+Rack is more than interface that can be used to talk to web server. It can be used to specify modules and his dependencies.
+To use Rack, provide an "app": an object that responds to the call method, taking the environment hash as a parameter, and returning an Array with three elements:
+   - The HTTP response code
+   - A Hash of headers
+   - The response body, which must respond to each
+
+You can use the rackup command line tool to start the app, for example: 
+ run Proc.new { |env| ['200', {'Content-Type' => 'text/html'}, ['get rack\'d']] }
+
+With Rack you can separate stages of the pipeline doing:
+  - Authentication: when the request arrives, are the users logon details correct? How do I validate this OAuth, HTTP Basic  Authentication, name/password.
+  - Authorisation: "is the user authorised to perform this particular task?", i.e. role-based security.
+  - Caching: have I processed this request already, can I return a cached result?
+  - Decoration: how can I enhance the request to make downstream processing better?
+  - Performance & Usage Monitoring: what stats can I get from the request and response?
+  - Execution: actually handle the request and provide a response.
+
+To create a middleware, we have to define methods initialize(app) and call(env). In call method we could do some tasks and then do @app.call(env) to return the control to rack. Then, we will use "use" to set the middleware we want to use before run an app. 
+
 
 ### Searching a method
 object.methods.inspect.split(", ").grep(/method/)
