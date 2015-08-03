@@ -261,8 +261,26 @@ object.methods.inspect.split(", ").grep(/method/)
 
 ### RSpec 
 
-Ejecuta un test concreto: bundle exec rspec spec/company_spec.rb:16
+ - Ejecuta un test concreto: bundle exec rspec spec/company_spec.rb:16
+ - pending: we could write this and the framework will ignore this test
+ - before(:each) and after(:each): to execute code before and after a tests
+ - stub: create an fake object. Ejm: bob.stub(:speak).and_return(‘hello’). For consecutive values: obj.stub(:foo).and_return(1,2,3)
+ - mock: cerate a fake object and said what is the input we need. bob = mock();  bob.should_receive(:testing).with('content')
+ - subject: allow to define alias for code
+ - let(:name): create alias for code with a name
+ - Config Rspec:
+       - c.order = 'random'
+       - c.color = true
+       - c.formatter = 'documentation'
+ 
 
-Debug: require “pry” ; binding.pry
-
+### Pry 
+ - Breakpoints: require “pry” ; binding.pry
+ - whereami number: you see code
+ - wtf: tack trace
+ - ls: methods and properties available in Pry (-g para user grep)
+ - cd: You can move up the scope chain using cd .. or you can go back to the top level of the scope using cd /.
+ - nesting: to see how deep you are
+ - find-method: to find a method
+ - next(next line)-step(next line if  it’s a method, then move into that method)-continue: we need to add the gems: “pry-remote” and “pry-nav” to de gemfile
 
