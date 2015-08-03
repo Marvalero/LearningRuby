@@ -236,13 +236,14 @@ Programming:
   - ** Exception handling: rescue_from ArgumentError, RuntimeError {|e| error!(“Error: #{e}")}
 
 #### 7: rack
-Rack is more than interface that can be used to talk to web server. It can be used to specify modules and his dependencies.
+Rack create an interface for a Webserver. But it's more than interface, it can be used to specify modules and his dependencies(using middleware).
+
 To use Rack, provide an "app": an object that responds to the call method, taking the environment hash as a parameter, and returning an Array with three elements:
    - The HTTP response code
    - A Hash of headers
    - The response body, which must respond to each
 
-You can use the rackup command line tool to start the app, for example: 
+You can use the rackup command line tool to start the app. For example, "config.ru": 
  run Proc.new { |env| ['200', {'Content-Type' => 'text/html'}, ['get rack\'d']] }
 
 With Rack you can separate stages of the pipeline doing:
@@ -254,6 +255,12 @@ With Rack you can separate stages of the pipeline doing:
   - Execution: actually handle the request and provide a response.
 
 To create a middleware, we have to define methods initialize(app) and call(env). In call method we could do some tasks and then do @app.call(env) to return the control to rack. Then, we will use "use" to set the middleware we want to use before run an app. 
+
+To avoid manipulate [status, headers, body, Rack provides a couple of convenience classes, Rack::Request and Rack::Response, to make life a little bit easier.
+
+  - Rack::Request wraps an env hash and provides you with convenience methods for pulling out the information you might need.
+  - Rack::Response is complementary to Rack::Request, and gives you a more convenient way to construct a response.
+
 
 
 ### Searching a method
