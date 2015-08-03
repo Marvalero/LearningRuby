@@ -9,6 +9,8 @@ RSpec.configure do |c|
 end
 
 describe TimeResponse do
+
+  # Application
   let(:app) { ->(env) { [200, env, "app"] } }
 
   let :middleware do
@@ -16,7 +18,7 @@ describe TimeResponse do
   end
 
   def env_for(url, opts={})
-    # It return the execution
+    # It return an enviroment var
     Rack::MockRequest.env_for(url, opts)
   end
 
