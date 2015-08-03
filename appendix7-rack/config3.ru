@@ -11,6 +11,18 @@ class HelloWorld
   end
 end
 
+class Middleware
+  def initialize(app)
+    @app = app
+  end
+
+  def call(env)
+    # We shoe the env var
+    puts "Var env: #{env.inspect}"
+    @app.call(env)
+  end
+end
+
 class BlogAuth < Rack::Auth::Basic
 
   def call(env)
@@ -28,12 +40,10 @@ end
 # "run". "run" is just there to illustrate that it's the end of the
 # chain and it does the work.
 app = Rack::Builder.new do
-  use Rack::ConditionalGet  # Support Caching
-  use Rack::Session::Cookie, secret: "MY_SECRET"
   use BlogAuth, "blog" do |username, password|
       [username, password] == ['admin', 'admin1']
   end
-
+  use Middleware
   run HelloWorldApp        # Say Hello
 end
 
