@@ -1,3 +1,4 @@
+require_relative "lib/time_response"
 
 class HelloWorldApp
   def self.call(env)
@@ -11,42 +12,12 @@ class HelloWorld
   end
 end
 
-class Middleware
-  def initialize(app)
-    @app = app
-  end
-
-  def call(env)
-    start = Time.now
-    status, headers, response = @app.call(env)
-    stop = Time.now
-    puts "status:#{status}, headers:#{headers}, <!-- Response Time: #{stop - start} -->\n #{response.to_s}"
-    [status,headers,[ "status: #{status}", " - Response Time: #{stop-start}"]]
-  end
-end
-
-class BlogAuth < Rack::Auth::Basic
-
-  def call(env)
-    request = Rack::Request.new(env)
-    case request.path
-    when '/index.xml'
-      @app.call(env)  # skip auth
-    else
-      super           # perform auth
-    end
-  end
-end
-
 # this returns an app that responds to call cascading down the list of
 # middlewares. Technically there is no difference between "use" and
 # "run". "run" is just there to illustrate that it's the end of the
 # chain and it does the work.
 app = Rack::Builder.new do
-  use BlogAuth, "blog" do |username, password|
-      [username, password] == ['admin', 'admin1']
-  end
-  use Middleware
+  use TimeResponse
   run HelloWorldApp        # Say Hello
 end
 
