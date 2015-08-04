@@ -13,7 +13,7 @@ describe "WatchApi" do
   end
 
   describe "API" do
-    let(:params) {{hour: 16,min: 0,sec: 0}.to_json  }
+    let(:params) {{time: Time.new(2015,3,2,16,0,0).to_i }.to_json  }
     let(:headers) { { "Content-Type" => "application/json" } }
 
     context "Simple test" do
@@ -29,7 +29,7 @@ describe "WatchApi" do
         expect(last_response.body).to eql("")
       end
       it "Put /watch" do
-        put "/watch", {day: "17", num_req: 8}.to_json, headers
+        put "/watch", {time: Time.new(2016).to_i, num_req: 8}.to_json, headers
         expect(last_response.status).to eql(204)
         expect(last_response.body).to eql("")
       end
@@ -41,12 +41,8 @@ describe "WatchApi" do
         expect(last_response.status).to eql(400)
         expect(last_response.body).to eql("400 Bad Request")
       end
-      it "Put with bad hour" do
-        put "/watch", {hour: "bad request"}.to_json, headers
-        expect(last_response.status).to eql(204)
-      end
-      it "Put with bad req_time" do
-        put "/watch", {day: "16", num_req: "Bad request"}.to_json, headers
+      it "Put with bad num_req" do
+        put "/watch", { time: Time.now.to_i, num_req: "Bad request"}.to_json, headers
         expect(last_response.status).to eql(204)
       end
     end
@@ -55,7 +51,7 @@ describe "WatchApi" do
       context "Put 1 request"do
         require 'json'
         it "get 1" do
-          put "/watch", {hour:16, min:0, sec:10, num_req: 1}.to_json, headers
+          put "/watch", {time: Time.new(2015,1,2,16,0,10).to_i, num_req: 1}.to_json, headers
           get "/watch"
           expect(last_response.status).to eql(200)
           expect(JSON.parse(last_response.body)["time"]).to match(/16:00:10/)
@@ -68,7 +64,7 @@ describe "WatchApi" do
       context "put 2 request" do
         require 'json'
         it "get 1" do
-          put "/watch", {hour:16, min:0, sec:0, num_req: 2}.to_json, headers
+          put "/watch", {time: Time.new(2015,6,2,16,0,0).to_i, num_req: 2}.to_json, headers
           get "/watch"
           expect(last_response.status).to eql(200)
           expect(JSON.parse(last_response.body)["time"]).to match(/16:00:00/)
@@ -86,7 +82,7 @@ describe "WatchApi" do
       context "put inf request" do
         require 'json'
         it "get 1" do
-          put "/watch",{hour:16, min:0, sec:0, num_req: 0}.to_json , headers
+          put "/watch",{time: Time.new(2016,3,2,16,0,0).to_i, num_req: 0}.to_json , headers
           get "/watch"
           expect(last_response.status).to eql(200)
           expect(JSON.parse(last_response.body)["time"]).to match(/16:00:00/)

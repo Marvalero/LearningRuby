@@ -43,7 +43,9 @@ class WatchApi < Grape::API
       status 204
       if request.body.length>2
         req_body = JSON.parse(request.body.read)
-        set_watch(get_time(req_body))
+        error!('400 Bad Request', 400) unless req_body["time"]
+        # require 'pry'; binding.pry
+        set_watch(Time.at(req_body["time"]))
         @@num_req = (req_body["num_req"]) ? req_body["num_req"] : 1
       else
         error!('400 Bad Request', 400)
