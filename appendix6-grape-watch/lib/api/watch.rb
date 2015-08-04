@@ -38,24 +38,15 @@ class WatchApi < Grape::API
       answer
     end
 
-    params do
-      optional :year, type: Integer, desc: 'year'
-      optional :month, type: Integer, desc: 'month'
-      optional :day, type: Integer, desc: 'day'
-      optional :hour, type: Integer, desc: 'hour'
-      optional :min, type: Integer, desc: 'minutes'
-      optional :sec, type: Integer, desc: 'secundes'
-      optional :num_req, type:Integer, desc: 'Number of request the server will return that anwser. 0 means always'
-    end
-
     put '/' do
       require 'json'
-      begin
-        status 204
-        set_watch(get_time(params.to_hash))
-        @@num_req = (params[:num_req]) ? params[:num_req] : 1
-      rescue RuntimeError
-        status 400
+      status 204
+      if request.body.length>2
+        req_body = JSON.parse(request.body.read)
+        set_watch(get_time(req_body))
+        @@num_req = (req_body["num_req"]) ? req_body["num_req"] : 1
+      else
+        error!('400 Bad Request', 400)
       end
     end
   end
