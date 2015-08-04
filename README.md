@@ -231,6 +231,7 @@ Programming:
   - resource: define the namespace
   - version: add in the path
   - authentication:
+  - request.body.read: to get information form the body
   - redirect: to a new url (you can redirect temporally or permanently)
   - Exceptions: error! (“Access Denied”, 401), you can present documented errors with Grape entity using the grape-entity gem
   - ** Exception handling: rescue_from ArgumentError, RuntimeError {|e| error!(“Error: #{e}")}
