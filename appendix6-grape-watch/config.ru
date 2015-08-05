@@ -1,5 +1,5 @@
 require 'grape'
-require_relative 'lib/api/watch'
+require_relative 'lib/api/base'
 
-run WatchApi
+run API::V2::WatchApi
 

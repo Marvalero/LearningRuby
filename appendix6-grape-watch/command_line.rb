@@ -5,8 +5,8 @@ require "thor"
 class MyThorExecutable < Thor
   desc "start", "Start the server"
   def start
-    require_relative 'lib/api/watch'
-    Rack::Handler::WEBrick.run WatchApi
+    require_relative 'lib/api/base'
+    Rack::Handler::WEBrick.run API::V2::WatchApi
   end
 
   desc "test", "Running test"

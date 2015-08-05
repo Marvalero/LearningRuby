@@ -1,0 +1,1 @@
+/Users/workshare1/github/LearningRuby/appendix9-sequel/path/ruby/2.1.0/gems/rugged-0.23.0/vendor/libgit2/build/CMakeFiles/git2.dir

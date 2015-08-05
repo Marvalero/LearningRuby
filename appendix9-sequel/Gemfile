@@ -1,0 +1,9 @@
+# Gemfile
+source "https://rubygems.org"
+
+gem "rspec"
+gem 'pry'
+gem 'rugged'
+gem 'mysql2'
+gem 'sequel'#, git: 'git@github.com:jeremyevans/sequel.git'
+
