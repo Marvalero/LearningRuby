@@ -18,7 +18,7 @@ SOLID:
   - Dependency Inversion
 
 # Designing Classes
-
+Code must be TRUE (TRANSPARENT, REASONABLE, USABLE, EXEMPLARY)
 
 
 
