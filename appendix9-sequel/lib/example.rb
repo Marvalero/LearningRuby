@@ -1,13 +1,9 @@
-#!/usr/bin/ruby
-
 require 'sequel'
-require 'mysql2'
 
-require 'pry'; binding.pry
 DB = Sequel.sqlite # memory database
 
 DB.create_table :items do
-  primary_key :id
+  primary_key String :id
   String :name
   Float :price
 end
@@ -15,9 +11,20 @@ end
 items = DB[:items] # Create a dataset
 
 # Populate the table
-items.insert(:name => 'abc', :price => rand * 100)
-items.insert(:name => 'def', :price => rand * 100)
-items.insert(:name => 'ghi', :price => rand * 100)
+items.insert(id: "a",:name => 'abc', :price => rand * 100)
+items.insert(id: "b",:name => 'def', :price => rand * 100)
+items.insert(id: "c",:name => 'ghi', :price => rand * 100)
+
+# Delete a row
+items.filter(id: "a").delete
+# Show rows
+items.each{|row| p row.inspect}
+
+# Update a row
+items.where(id: "b").update(:name => 'change', :price => 100000)
+items.where(id: "new").update(:name => 'new', :price => 100000)
+items.each{|row| p row.inspect}
+
 
 # Print out the number of records
 puts "Item count: #{items.count}"

@@ -1,4 +1,4 @@
-/Users/workshare1/.rvm/rubies/ruby-2.1.1/bin/ruby -r ./siteconf20150805-91270-5gyqz9.rb extconf.rb 
+/Users/workshare1/.rvm/rubies/ruby-2.1.1/bin/ruby extconf.rb 
 checking for sqlite3.h... yes
 checking for sqlite3_libversion_number() in -lsqlite3... yes
 checking for rb_proc_arity()... yes
@@ -26,5 +26,5 @@ linking shared-object sqlite3/sqlite3_native.bundle
 ld: warning: directory not found for option '-L/Users/travis/.sm/pkg/active/lib'
 
 make "DESTDIR=" install
-/usr/bin/install -m 0755 sqlite3_native.bundle ./.gem.20150805-91270-2v27q8/sqlite3
+/usr/bin/install -m 0755 sqlite3_native.bundle ./.gem.20150805-73688-148l18f/sqlite3
 installing default sqlite3_native libraries

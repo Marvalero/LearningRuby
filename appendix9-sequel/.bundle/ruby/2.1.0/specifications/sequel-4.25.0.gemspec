@@ -18,10 +18,10 @@ Gem::Specification.new do |s|
   s.licenses = ["MIT"]
   s.rdoc_options = ["--quiet", "--line-numbers", "--inline-source", "--title", "Sequel: The Database Toolkit for Ruby", "--main", "README.rdoc"]
   s.required_ruby_version = Gem::Requirement.new(">= 1.8.7")
-  s.rubygems_version = "2.4.6"
+  s.rubygems_version = "2.2.2"
   s.summary = "The Database Toolkit for Ruby"
 
-  s.installed_by_version = "2.4.6" if s.respond_to? :installed_by_version
+  s.installed_by_version = "2.2.2" if s.respond_to? :installed_by_version
 
   if s.respond_to? :specification_version then
     s.specification_version = 4

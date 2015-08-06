@@ -247,7 +247,7 @@ int t(void) { sqlite3_column_database_name(); return 0; }
 ld: warning: directory not found for option '-L/Users/travis/.sm/pkg/active/lib'
 Undefined symbols for architecture x86_64:
   "_sqlite3_column_database_name", referenced from:
-      _t in conftest-6b3243.o
+      _t in conftest-06fd6d.o
 ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 checked program was:
@@ -301,7 +301,7 @@ int t(void) { sqlite3_enable_load_extension(); return 0; }
 ld: warning: directory not found for option '-L/Users/travis/.sm/pkg/active/lib'
 Undefined symbols for architecture x86_64:
   "_sqlite3_enable_load_extension", referenced from:
-      _t in conftest-817031.o
+      _t in conftest-b417e3.o
 ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 checked program was:
@@ -355,7 +355,7 @@ int t(void) { sqlite3_load_extension(); return 0; }
 ld: warning: directory not found for option '-L/Users/travis/.sm/pkg/active/lib'
 Undefined symbols for architecture x86_64:
   "_sqlite3_load_extension", referenced from:
-      _t in conftest-74a7e2.o
+      _t in conftest-2cbef1.o
 ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 checked program was:

@@ -1,4 +1,3 @@
-#!/usr/bin/env ruby
 require "rubygems" # ruby1.9 doesn't "require" it though
 require "thor"
 
@@ -6,7 +5,7 @@ class MyThorExecutable < Thor
   desc "start", "Start the server"
   def start
     require_relative 'lib/api/base'
-    Rack::Handler::WEBrick.run API::V2::WatchApi
+    Rack::Handler::WEBrick.run API::V3::WatchApi
   end
 
   desc "test", "Running test"
