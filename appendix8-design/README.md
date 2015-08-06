@@ -9,7 +9,8 @@ have dependencies.
 The desing has two component: write the code for the feature and create
 code that is amenable to being changed.
 
-### 1: Desing Principles
+1: Desing Principles
+-----------------------------------------------
 SOLID:
   - Single Responsibility
   - Open-Closed
@@ -17,7 +18,8 @@ SOLID:
   - Interface Segregation
   - Dependency Inversion
 
-### 2: Designing Classes
+2: Designing Classes
+----------------------------------------------
 Fundaments of OO: classes and message
 
 Criteria to write software: 
@@ -41,12 +43,16 @@ Single responsability: Classes should do the smallest possible useful thing.
 
 DRY: Don’t Repeat Yourself
 
-Good practices:
+#### Good practices:
    - Hide instance variables. Even from the class that defines them (using attr_reader). 
    - Hide data structures. You could use Ruby Struct Class to wrap an structure.
    - Extract extra responsibilities from methods. Create new methods with code that is used  by other methods.
         - If a bit of code inside a method needs a comment, extract that bit into a separate method
    - Isolate extra responsibilities in classes. Maybe define a Struct with some methods.
+
+3: Dependencies
+------------------------------------------
+
 
 
 
