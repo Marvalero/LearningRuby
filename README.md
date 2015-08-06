@@ -262,13 +262,26 @@ To avoid manipulate [status, headers, body, Rack provides a couple of convenienc
   - Rack::Request wraps an env hash and provides you with convenience methods for pulling out the information you might need.
   - Rack::Response is complementary to Rack::Request, and gives you a more convenient way to construct a response.
 
+#### 9: Sequel
+   - sequel console: sequel sqlite://test.db
+   - Sequel connect: DB = Sequel.sqlite
+   - Create table: DB.create_table :mytable {}
+   - Get table: table = DB[:mytable]
+   - Put new row: table.insert()
+   - Get data:
+
+                DB[:countries].filter(:region => 'Middle East').avg(:GDP)
+
+                middle_east = DB[:countries].filter(:region => 'Middle East’)
+                middle_east.order(:name).each{|r| puts r[:name]}
+   - Execute a SQL syntaxt: DB.run(“SQL syntax”)
+   - Delete: posts.where('stamp < ?', Date.today - 7).delete 
 
 
 ### Searching a method
 object.methods.inspect.split(", ").grep(/method/)
 
 ### RSpec 
-
  - Ejecuta un test concreto: bundle exec rspec spec/company_spec.rb:16
  - pending: we could write this and the framework will ignore this test
  - before(:each) and after(:each): to execute code before and after a tests
