@@ -17,7 +17,7 @@ module API
           {time: req_body["time"], num_req: req_body["num_req"]}
         end
         def database
-          @@database  ||= Util::Database.new
+          @@database  ||= Util::V4::Database.new
         end
       end
 

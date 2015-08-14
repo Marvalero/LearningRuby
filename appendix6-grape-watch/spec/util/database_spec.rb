@@ -6,7 +6,7 @@ RSpec.configure do |c|
 end
 
 describe 'Database' do
-  let(:database) {Util::Database.new}
+  let(:database) {Util::V4::Database.new}
   let(:test_time) {Time.new(2013,2,2,2,1,1).to_i}
 
   describe "methods" do
