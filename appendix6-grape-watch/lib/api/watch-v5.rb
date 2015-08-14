@@ -18,9 +18,13 @@ module API
         def database
           @@database  ||= Util::V5::ActionDb.new
         end
+        def database=(value)
+          @@database=value
+        end
       end
+
       def self.call(env,db=nil)
-        @@database= db if db
+        database= db if db
         super(env)
       end
 

@@ -8,7 +8,6 @@ module Util
       end
       def call(env, opts={})
         up_database(opts[:database])
-        # @app.configure(database)
         @app.call(env,database)
       end
       def database
