@@ -1,6 +1,6 @@
 require 'rack'
 require 'util/api_configurator'
-require 'util/database_v5'
+require 'util/action_db'
 require_relative '../mocks/database'
 
 RSpec.configure do |c|
@@ -9,17 +9,18 @@ RSpec.configure do |c|
 end
 
 describe "ApiConfigurator" do
-  let(:app) { Struct.new(:configure) {
-    def self.call(env)
-      [200,[],[@@db]]
+  let(:app) { Struct.new(:db) {
+    def call(envi, database=nil)
+      configure(database)
+      [200,[],[db]]
     end
-    def self.configure(database)
-      @@db= database
+    def configure(database)
+      @db= database || Util::V5::ActionDb.new
     end
-    def self.db
-      @@db
+    def db
+      @db
     end
-  } }
+  }.new }
   let(:mockdatabase) { Mocks::DatabaseMock.new }
 
   let :middleware do
@@ -33,7 +34,7 @@ describe "ApiConfigurator" do
     # app.any_instance.stub(:call).and_return([200,[],["ok"]])
     code, env = middleware.call env_for('http://localhost:8080/watchs')
     expect(code).to eql(200)
-    expect(app.db).to eql(Util::V5::Database)
+    expect(app.db.class).to eql(Util::V5::ActionDb)
   end
   it "Mock database" do
     code, env = middleware.call(env_for('http://localhost:8080/watchs'), {database: mockdatabase})

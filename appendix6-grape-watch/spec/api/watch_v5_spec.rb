@@ -35,6 +35,7 @@ describe "API V5" do
     context "Use case 1" do
       require 'json'
       it "Get /v4/watchs/:topic" do
+        mockdatabase.time= Time.now.to_i
         get url_autod
         expect(last_response.status).to eql(200)
         expect(JSON.parse(last_response.body)["time"]).to eql(Time.now.to_i)

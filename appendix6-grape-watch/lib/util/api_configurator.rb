@@ -1,4 +1,4 @@
-require_relative 'database_v5'
+require_relative 'action_db'
 
 module Util
   module V5
@@ -15,7 +15,7 @@ module Util
         @database
       end
       def up_database(value)
-        @database = value || Util::V5::Database.new
+        @database = value || Util::V5::ActionDb.new
       end
     end
   end

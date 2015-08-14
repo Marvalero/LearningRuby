@@ -1,6 +1,6 @@
 require 'grape'
 require 'sequel'
-require_relative '../util/database_v5'
+require_relative '../util/action_db'
 
 module API
   module V5
@@ -16,7 +16,7 @@ module API
           {time: req_body["time"], num_req: req_body["num_req"]}
         end
         def database
-          @@database  ||= Util::V5::Database.new
+          @@database  ||= Util::V5::ActionDb.new
         end
       end
       def self.call(env,db=nil)
