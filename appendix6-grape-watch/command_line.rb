@@ -14,7 +14,7 @@ class MyThorExecutable < Thor
     require 'rspec'
     require 'yaml'
     require 'rack/test'
-    RSpec::Core::Runner.run(['spec'])
+    RSpec::Core::Runner.run(['spec/api/watch_v5_spec.rb'])
   end
 end
 

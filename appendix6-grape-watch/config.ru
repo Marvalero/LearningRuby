@@ -1,5 +1,5 @@
-require 'grape'
 require_relative 'lib/api/base'
 
-run API::V3::WatchApi
+use Util::V5::ApiConfigurator
+run API::V5::WatchApi
 
