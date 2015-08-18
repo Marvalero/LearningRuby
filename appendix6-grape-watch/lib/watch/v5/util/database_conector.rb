@@ -1,3 +1,4 @@
+require 'ostruct'
 
 module Util
   module V5
@@ -11,7 +12,8 @@ module Util
         end
       end
       def query(topic)
-        watches.filter(topic: topic).first
+        response = watches.filter(topic: topic).first
+        response.delete(:untitled) and OpenStruct.new(response) if response
       end
       def delete(topic)
         watches.filter(topic: topic).delete

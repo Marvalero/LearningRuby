@@ -7,13 +7,13 @@ module Util
         @app = app
       end
       def call(env, opts={})
-        up_database(opts[:database])
+        self.database=opts[:database]
         @app.call(env,database)
       end
       def database
         @database
       end
-      def up_database(value)
+      def database=(value)
         @database = value || Util::V5::ActionDb.new
       end
     end

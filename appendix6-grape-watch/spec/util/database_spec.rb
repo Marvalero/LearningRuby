@@ -1,4 +1,4 @@
-require 'util/database'
+require 'watch'
 
 RSpec.configure do |c|
   c.color = true

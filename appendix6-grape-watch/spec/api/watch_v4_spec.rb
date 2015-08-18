@@ -1,4 +1,4 @@
-require 'api/base'
+require 'watch'
 require 'rack/test'
 
 RSpec.configure do |c|

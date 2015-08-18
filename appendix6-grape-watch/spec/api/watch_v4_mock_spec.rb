@@ -1,4 +1,4 @@
-require 'api/base'
+require 'watch'
 require 'rack/test'
 require_relative '../mocks/database'
 

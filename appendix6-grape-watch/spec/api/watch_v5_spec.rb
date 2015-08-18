@@ -1,7 +1,6 @@
-require 'api/base'
+require 'watch'
 require 'rack/test'
 require_relative '../mocks/database'
-require 'util/api_configurator'
 
 RSpec.configure do |c|
   c.color = true

@@ -1,34 +1,28 @@
 require 'grape'
 require 'sequel'
-require_relative '../util/action_db'
+require_relative '../../../watch'
 
 module API
-  module V5
+  module V4
     class WatchApi < Grape::API
-      version 'v5'
+      version 'v4'
       format :json
+
       helpers do
         def check_parameters(request)
           require 'json'
-          error!('400 Bad Request. Required: num_req(Integer) and time(Integer)',400) unless request.body.length>2
+          error!('400 Bad Request',400) unless request.body.length>2
           req_body = JSON.parse(request.body.read)
-          error!('400 Bad Request. Required: num_req(Integer) and time(Integer)', 400) unless (req_body["time"].kind_of? Integer and req_body["num_req"].kind_of? Integer)
+          error!('400 Bad Request', 400) unless (req_body["time"].kind_of? Integer and req_body["num_req"].kind_of? Integer)
           {time: req_body["time"], num_req: req_body["num_req"]}
         end
         def database
-          @@database  ||= Util::V5::ActionDb.new
+          @@database  ||= Util::V4::Database.new
         end
-        def database=(value)
-          @@database=value
-        end
-      end
-
-      def self.call(env,db=nil)
-        database= db if db
-        super(env)
       end
 
       resource :watchs do
+
         params do
           requires :topic, type: String, desc: "Topic of the watch you want to see"
         end

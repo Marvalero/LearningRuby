@@ -1,4 +1,5 @@
 require_relative 'database_conector'
+require 'ostruct'
 
 module Util
   module V5
@@ -23,9 +24,9 @@ module Util
         end
       end
       def query_watch(topic)
-        default = {topic: nil, time: Time.now.to_i, num_req: 0}
+        default = {topic: topic, time: Time.now.to_i, num_req: 0}
         query = db_conector.query(topic)
-        query ? {topic: query[:topic], time: query[:time],num_req: query[:num_req] } : default
+        query ? query : OpenStruct.new(default)
       end
       def db_conector
         @@db_conector ||= Util::V5::DbConector.new

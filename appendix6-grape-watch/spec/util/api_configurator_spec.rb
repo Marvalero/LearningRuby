@@ -1,6 +1,5 @@
 require 'rack'
-require 'util/api_configurator'
-require 'util/action_db'
+require 'watch'
 require_relative '../mocks/database'
 
 RSpec.configure do |c|
