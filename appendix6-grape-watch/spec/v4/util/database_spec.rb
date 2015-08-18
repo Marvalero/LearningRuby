@@ -1,12 +1,7 @@
-require 'watch'
-
-RSpec.configure do |c|
-  c.color = true
-  c.formatter = 'documentation'
-end
+require_relative '../../spec_helper'
 
 describe 'Database' do
-  let(:database) {Util::V4::Database.new}
+  let(:database) {Watch::V4::Util::Database.new}
   let(:test_time) {Time.new(2013,2,2,2,1,1).to_i}
 
   describe "methods" do

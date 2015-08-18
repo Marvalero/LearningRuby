@@ -1,17 +1,11 @@
-require 'watch'
+require_relative '../../spec_helper'
 require 'rack/test'
-require_relative '../mocks/database'
-
-RSpec.configure do |c|
-  c.color = true
-  c.formatter = 'documentation'
-end
 
 context "Using mock database" do
   include Mocks
   include Rack::Test::Methods
 
-  ApiDup = API::V4::WatchApi.dup
+  ApiDup = Watch::V4::API::WatchApi.dup
 
   class ApiDup
     helpers do

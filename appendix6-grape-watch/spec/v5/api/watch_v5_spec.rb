@@ -1,21 +1,16 @@
-require 'watch'
 require 'rack/test'
-require_relative '../mocks/database'
+require_relative '../../spec_helper'
 
-RSpec.configure do |c|
-  c.color = true
-  c.formatter = 'documentation'
-end
 
 describe "API V5" do
   include Rack::Test::Methods
 
   def app
-    API::V5::WatchApi
+    Watch::V5::API::WatchApi
   end
 
   let(:mockdatabase) {Mocks::DatabaseMock.new }
-  let(:apiconfigurator) {Util::V5::ApiConfigurator.new(app)}
+  let(:apiconfigurator) {Watch::V5::Util::ApiConfigurator.new(app)}
 
   def env_for(url, opts={})
     Rack::MockRequest.env_for(url, opts)

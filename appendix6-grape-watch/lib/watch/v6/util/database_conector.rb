@@ -1,7 +1,7 @@
 require 'ostruct'
 
 module Watch
-  module V5
+  module V6
     module Util
       class DbConector
         public

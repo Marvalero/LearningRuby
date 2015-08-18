@@ -1,7 +1,7 @@
 require_relative 'action_db'
 
 module Watch
-  module V5
+  module V6
     module Util
       class ApiConfigurator
         def initialize(app)
@@ -15,7 +15,7 @@ module Watch
           @database
         end
         def database=(value)
-          @database = value || Watch::V5::Util::ActionDb.new
+          @database = value || Watch::V6::Util::ActionDb.new
         end
       end
     end

@@ -3,10 +3,10 @@ require 'sequel'
 require_relative '../../../watch'
 
 module Watch
-  module V5
+  module V6
     module API
       class WatchApi < Grape::API
-        version 'v5'
+        version 'v6'
         format :json
         helpers do
           def check_parameters(request)

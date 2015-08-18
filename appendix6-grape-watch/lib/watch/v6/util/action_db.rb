@@ -2,7 +2,7 @@ require_relative 'database_conector'
 require 'ostruct'
 
 module Watch
-  module V5
+  module V6
     module Util
       class ActionDb
         public
@@ -30,7 +30,7 @@ module Watch
           query ? query : OpenStruct.new(default)
         end
         def db_conector
-          @@db_conector ||= Watch::V5::Util::DbConector.new
+          @@db_conector ||= Watch::V6::Util::DbConector.new
         end
       end
     end

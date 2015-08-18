@@ -1,16 +1,12 @@
-require 'watch'
+require_relative '../../spec_helper'
 require 'rack/test'
 
-RSpec.configure do |c|
-  c.color = true
-  c.formatter = 'documentation'
-end
 
 describe "WatchApi" do
   include Rack::Test::Methods
 
   def app
-    API::V2::WatchApi
+    Watch::V2::API::WatchApi
   end
 
   describe "API V2" do
