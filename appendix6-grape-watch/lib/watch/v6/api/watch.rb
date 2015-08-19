@@ -24,9 +24,11 @@ module Watch
           end
         end
 
-        def self.call(env,db=nil)
-          database= db if db
-          super(env)
+        def set_action(action=nil)
+          @@database= action if action
+        end
+        def database
+          @@database  ||= Watch::V5::Util::ActionDb.new
         end
 
         resource :watchs do

@@ -36,8 +36,9 @@ module Watch
   end
   module V6
     require_relative 'watch/v6/api/watch'
+    require_relative 'watch/v6/util/create_watch'
     require_relative 'watch/v6/util/action_db'
-    require_relative 'watch/v6/util/api_configurator'
+    require_relative 'watch/v6/util/watch_configurator'
     require_relative 'watch/v6/util/database_conector'
     class Base < Grape::API
       mount Watch::V6::API::WatchApi

@@ -1,26 +1,26 @@
-require 'ostruct'
 
 module Watch
   module V6
     module Util
       class DbConector
         public
-        def update_database(topic,time,num_req)
-          if watches.filter(topic: topic).first
-            watches.where(topic: topic).update(time: time, num_req: num_req)
+        def update_database(watch)
+          if watches.filter(topic: watch.topic).first
+            watches.where(topic: watch.topic).update(time: watch.time, num_req: watch.num_req)
           else
-            watches.insert(topic: topic, time: time, num_req: num_req)
+            watches.insert(topic: watch.topic, time: watch.time, num_req: watch.num_req)
           end
         end
         def query(topic)
           response = watches.filter(topic: topic).first
-          response.delete(:untitled) and OpenStruct.new(response) if response
+          response.delete(:untitled) and create_watch(response) if response
         end
         def delete(topic)
           watches.filter(topic: topic).delete
         end
 
         private
+        include Watch::V6::Util::CreateWatch
         def db
           @@db ||= Sequel.sqlite
         end

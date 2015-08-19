@@ -4,13 +4,11 @@ require_relative '../../spec_helper'
 
 describe "API V6" do
   include Rack::Test::Methods
+  let(:watch_configurator) {Watch::V6::Util::WatchConfigurator.new}
 
   def app
-    Watch::V6::API::WatchApi
+    watch_configurator.api
   end
-
-  let(:mockdatabase) {Mocks::DatabaseMock.new }
-  let(:apiconfigurator) {Watch::V6::Util::ApiConfigurator.new(app)}
 
   def env_for(url, opts={})
     Rack::MockRequest.env_for(url, opts)
@@ -24,51 +22,7 @@ describe "API V6" do
   let(:url_autod) {"/v6/watchs/autodelete"}
 
 
-  describe "mock database" do
-    before(:each) {apiconfigurator.call( env_for('http://localhost:8080/watchs'), {database: mockdatabase})}
-    context "Use case 1" do
-      require 'json'
-      it "Get /v6/watchs/:topic" do
-        mockdatabase.time= Time.now.to_i
-        get url_autod
-        expect(last_response.status).to eql(200)
-        expect(JSON.parse(last_response.body)["time"]).to eql(Time.now.to_i)
-      end
-    end
-    context "Use case 2" do
-      let(:no_num_req_params) {{time: Time.new(2015,3,2,16,0,0).to_i }.to_json  }
-      let(:bad_num_req_params) { { time: Time.now.to_i, num_req: "Bad request"}.to_json}
-      it "Put /v6/watchs/spam" do
-        put url_spam, good_params, headers
-        expect(last_response.status).to eql(204)
-        expect(last_response.body).to eql("")
-      end
-      it "Get /v6/watchs/spam" do
-        mockdatabase.time= test_time
-        get url_spam
-        expect(last_response.status).to eql(200)
-        expect(JSON.parse(last_response.body)["time"]).to eql(test_time)
-      end
-      it "Put with no num_req" do
-        put url_spam, no_num_req_params, headers
-        expect(last_response.status).to eql(400)
-        expect(last_response.body).to match("400 Bad Request")
-      end
-      it "Put without time" do
-        put url_spam
-        expect(last_response.status).to eql(400)
-        expect(last_response.body).to match("400 Bad Request")
-      end
-      it "Put with bad num_req" do
-        put url_spam, bad_num_req_params, headers
-        expect(last_response.status).to eql(400)
-        expect(last_response.body).to match("400 Bad Request")
-      end
-    end
-  end
-
   describe "real database" do
-    before(:each) {apiconfigurator.call( env_for('http://localhost:8080/watchs'))}
     context "Use case 1" do
       require 'json'
       it "Get /v6/watchs/:topic" do
