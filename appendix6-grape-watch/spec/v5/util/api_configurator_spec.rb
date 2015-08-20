@@ -1,5 +1,5 @@
 require 'rack'
-require_relative '../../spec_helper'
+require_relative '../spec_helper'
 
 
 describe "ApiConfigurator v5" do

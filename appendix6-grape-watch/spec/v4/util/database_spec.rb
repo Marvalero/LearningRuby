@@ -1,4 +1,4 @@
-require_relative '../../spec_helper'
+require_relative '../spec_helper'
 
 describe 'Database' do
   let(:database) {Watch::V4::Util::Database.new}

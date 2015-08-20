@@ -1,0 +1,5 @@
+require_relative '../spec_helper'
+require 'watch/v6'
+require_relative 'mocks/action'
+require_relative 'util/test_action_role'
+require_relative 'util/test_database_role'

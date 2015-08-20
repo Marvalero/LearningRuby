@@ -1,6 +1,6 @@
 require 'grape'
 require 'sequel'
-require_relative '../../../watch'
+require_relative '../../v5'
 
 module Watch
   module V5

@@ -1,4 +1,4 @@
-require_relative '../../../watch'
+require_relative '../../v6'
 
 module Watch
   module V6

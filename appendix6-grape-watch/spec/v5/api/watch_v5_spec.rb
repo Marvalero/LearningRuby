@@ -1,5 +1,5 @@
 require 'rack/test'
-require_relative '../../spec_helper'
+require_relative '../spec_helper'
 
 
 describe "API V5" do
