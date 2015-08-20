@@ -25,8 +25,8 @@ module Watch
 
         private
         def configure_api(api)
-          self.api= api.new
-          self.api.set_action(action)
+          api.action= action
+          self.api = api.new
         end
         def configure_action(action)
           self.action= action.new(database)

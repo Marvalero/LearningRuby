@@ -17,18 +17,19 @@ describe "WatchConfigurator v6" do
   end
 
   let(:env) {env_for('/v6/watchs/topic')}
-
-  it "No database" do
-    app = configurator_default.api
-    code = app.call(env)
-    expect(code[0]).to eql(200)
-    expect(app.database.class).to eql(Watch::V6::Util::ActionDb)
+  context "Real database" do
+    it "returns 200" do
+      app = configurator_default.api
+      code = app.call(env)
+      expect(code[0]).to eql(200)
+    end
   end
-  it "Mock database" do
-    app= configurator_mod.api
-    code = app.call(env)
-    expect(code[0]).to eql(200)
-    expect(app.database.class).to eql(mockdatabase)
+  context "Mock database" do
+    it "returns 200" do
+      app= configurator_mod.api
+      code = app.call(env)
+      expect(code[0]).to eql(200)
+    end
   end
 end
 

@@ -6,8 +6,12 @@ module Watch
   module V6
     module API
       class WatchApi < Grape::API
-        version 'v6'
+        class << self
+          attr_accessor :action
+        end
+
         format :json
+        version :v6
         helpers do
           def check_parameters(request)
             require 'json'
@@ -16,27 +20,21 @@ module Watch
             error!('400 Bad Request. Required: num_req(Integer) and time(Integer)', 400) unless (req_body["time"].kind_of? Integer and req_body["num_req"].kind_of? Integer)
             {time: req_body["time"], num_req: req_body["num_req"]}
           end
-          def database
-            @@database  ||= Watch::V5::Util::ActionDb.new
+          def action
+            WatchApi.action  ||=  Watch::V5::Util::ActionDb.new
           end
-          def database=(value)
-            @@database=value
+          def action=(value)
+            WatchApi.action=value
           end
         end
 
-        def set_action(action=nil)
-          @@database= action if action
-        end
-        def database
-          @@database  ||= Watch::V5::Util::ActionDb.new
-        end
 
         resource :watchs do
           params do
             requires :topic, type: String, desc: "Topic of the watch you want to see"
           end
           get '/:topic' do
-            database.get_watch(params["topic"]).to_h
+            action.get_watch(params["topic"]).to_h
           end
 
           params do
@@ -45,7 +43,7 @@ module Watch
           put '/:topic' do
             status 204
             req_body = check_parameters(request).merge({topic: params["topic"]})
-            database.set_topic(topic: req_body[:topic], time: req_body[:time], num_req: req_body[:num_req])
+            action.set_topic(req_body)
           end
         end
       end
