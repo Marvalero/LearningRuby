@@ -1,5 +1,7 @@
 require_relative '../spec_helper'
 
+puts self.inspect
+
 describe "V6" do
   describe "ActionDb" do
     let(:action) {Watch::V6::Util::ActionDb.new}
@@ -11,6 +13,16 @@ describe "V6" do
         test_interface(action)
       end
     end
+
+    describe "Using a mock database"do
+      it "calling db.query" do
+        db_mock = double("Object",  query: nil)
+        expect(db_mock).to receive(:query)
+        action_with_dbmock = Watch::V6::Util::ActionDb.new(db_mock)
+        action_with_dbmock.get_watch("topic")
+      end
+    end
+
 
     describe "Basic methods" do
       it "#initialize"do

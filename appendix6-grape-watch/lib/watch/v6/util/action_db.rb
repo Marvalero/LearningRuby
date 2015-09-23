@@ -5,7 +5,7 @@ module Watch
       class ActionDb
         public
         def initialize(db=nil)
-          @db_conector= db
+          @@db_conector= db
         end
 
         def get_watch(topic)

@@ -1,0 +1,3 @@
+# Sunspot_solr Explanation
+
+
