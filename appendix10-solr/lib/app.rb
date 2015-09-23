@@ -27,7 +27,8 @@ Sunspot.setup(Book) do
   text    :author
   text    :blurb
   integer :edition
-  string  :isbn10, :isbn13
+  string  :isbn10
+  string  :isbn13
   float   :price
   time    :published_at
   text    :publisher
